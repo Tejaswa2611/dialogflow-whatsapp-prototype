@@ -42,7 +42,7 @@ app.post('/sendMessage', (req, res) => {
         });
 });
 
-app.get('/webhookverify', (req, res) => {
+app.get('/webhook', (req, res) => {
     console.log('Received webhook verification request:', req.query);
     const mode = req.query['hub.mode'];
     const challenge = req.query['hub.challenge'];

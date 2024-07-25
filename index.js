@@ -106,6 +106,7 @@ const keyFilePath = process.env.FILE_PATH;
 const client = new SessionsClient({
     keyFilename: keyFilePath // Replace with the path to your service account key
 });
+console.log("client: ", client);
 if (!keyFilePath) {
     console.error('Environment variable FILE_PATH is not set.');
 }

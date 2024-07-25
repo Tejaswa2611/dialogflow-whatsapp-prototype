@@ -103,6 +103,7 @@ const verifyToken = "mango";
 const client = new SessionsClient({
     keyFilename: 'process.env.FILE_PATH' // Replace with the path to your service account key
 });
+console.log("env: ", process.env.FILE_PATH)
 
 // Webhook verification endpoint
 app.get('/webhook', (req, res) => {
@@ -136,9 +137,10 @@ app.post('/webhook', async (req, res) => {
 
     // Generate a session ID
     const sessionId = uuid.v4();
-
+    console.log('Session ID:', sessionId);
     // Create session path
     const sessionPath = client.sessionPath(projectId, sessionId);
+
 
     // Detect intent in Dialogflow
     const request = {

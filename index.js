@@ -88,6 +88,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const { SessionsClient } = require('@google-cloud/dialogflow');
 const uuid = require('uuid');
+require('dotenv').config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -100,7 +101,7 @@ const verifyToken = "mango";
 
 // Dialogflow client
 const client = new SessionsClient({
-    keyFilename: 'dialogbotJSON.json' // Replace with the path to your service account key
+    keyFilename: 'process.env.FILE_PATH' // Replace with the path to your service account key
 });
 
 // Webhook verification endpoint

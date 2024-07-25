@@ -17,6 +17,7 @@ const verifyToken = "mango";
 // Dialogflow client setup
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 const projectId = CREDENTIALS.project_id;
+console.log("projectId: ", projectId);
 
 const CONFIGURATION = {
     credentials: {

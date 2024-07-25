@@ -89,6 +89,7 @@ const axios = require('axios');
 const { SessionsClient } = require('@google-cloud/dialogflow');
 const uuid = require('uuid');
 require('dotenv').config();
+const fs = require('fs');
 
 const app = express();
 app.use(bodyParser.json());
@@ -100,10 +101,21 @@ const phoneNumberId = "136213639578430"; // Replace with your phone number ID
 const verifyToken = "mango";
 
 // Dialogflow client
+const keyFilePath = process.env.FILE_PATH;
+
 const client = new SessionsClient({
-    keyFilename: 'process.env.FILE_PATH' // Replace with the path to your service account key
+    keyFilename: keyFilePath // Replace with the path to your service account key
 });
-console.log("env: ", process.env.FILE_PATH)
+if (!keyFilePath) {
+    console.error('Environment variable FILE_PATH is not set.');
+}
+console.log("env: ", keyFilePath)
+
+if (!fs.existsSync(keyFilePath)) {
+    console.error(`Service account key file not found at path: ${keyFilePath}`);
+    process.exit(1);
+}
+
 
 // Webhook verification endpoint
 app.get('/webhook', (req, res) => {
@@ -154,8 +166,10 @@ app.post('/webhook', async (req, res) => {
 
     try {
         const responses = await client.detectIntent(request);
+        console.log('Dialogflow response:', responses);
         const result = responses[0].queryResult;
         const fulfillmentText = result.fulfillmentText;
+        console.log('Fulfillment text:', fulfillmentText);
 
         // Send response to WhatsApp
         await sendWhatsAppMessage(sender, fulfillmentText);

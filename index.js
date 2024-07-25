@@ -106,7 +106,7 @@ const keyFilePath = process.env.FILE_PATH;
 const client = new SessionsClient({
     keyFilename: keyFilePath // Replace with the path to your service account key
 });
-console.log("client: ", client);
+// console.log("client: ", client);
 if (!keyFilePath) {
     console.error('Environment variable FILE_PATH is not set.');
 }
@@ -139,7 +139,7 @@ app.get('/webhook', (req, res) => {
 // Incoming message processing endpoint
 app.post('/webhook', async (req, res) => {
     try {
-        const content = fs.readFileSync(filePath, 'utf8');
+        const content = fs.readFileSync(keyFilePath, 'utf8');
         console.log('Service account key file content:', content.slice(0, 30) + '...'); // Log only the first 30 characters for security
     } catch (error) {
         console.error('Error reading service account key file:', error);

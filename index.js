@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // Replace with your values
-const whatsappToken = 'EAAJPOGJfim8BO0fXY97UflMMNadiSa4xmiwZCWLZCxrepGVIXtuoUC5r5Fj8mDZB4dqIRGdngeqsy6PLR7yWGzrZALrg8bSiaSzTU69aubTIb9QrKcy4e5vzc0uaB4qojZCmLXgPinnoQrnzWAiuOfI865fpnY9h6BOxfnyElJ0ZCLonqjFtpi0hUKWgT1AqbBNIqHUwtQm7Qvo0XSmlvb1YLXQvYZD';
+const whatsappToken = process.env.WHATSAPP_TOKEN;
 const phoneNumberId = "136213639578430";
 const verifyToken = "mango";
 

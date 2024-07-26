@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 const whatsappToken = process.env.WHATSAPP_TOKEN;
 const phoneNumberId = "136213639578430";
 const verifyToken = "mango";
+console.log("whatsappToken: ", whatsappToken);
 
 // Dialogflow client setup
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
